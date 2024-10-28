@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "PlaywrightTests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "BROWSER": "Chrome",
+        "ENVIRONMENT": "QA"
+      }
+    }
+  }
+}

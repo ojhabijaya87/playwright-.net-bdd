@@ -1,0 +1,54 @@
+# Ignore build output and logs
+bin/
+obj/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+
+# Ignore Playwright binaries and dependencies
+playwright-config.json
+playwright-report/
+playwright/.cache/
+**/Debug/
+**/Release/
+bin/Debug/
+bin/Release/
+
+# Ignore test result outputs, screenshots, and videos
+TestResults/
+TestResults/Report/
+TestResults/Img/
+TestResults/Vid/
+
+# Ignore SpecFlow specific files
+**/*.feature.cs
+*.csproj.user
+*.cache
+
+# Ignore ExtentReports data
+TestResults/Report/*.html
+TestResults/Report/*.json
+
+
+# Ignore IDE specific settings
+.vscode/
+.idea/
+*.vs/
+
+# Ignore temporary files
+*.tmp
+*.log
+*.lock
+*.pyc
+*.pyo
+*.pdb
+*.cache
+
+# Ignore any additional files
+*.db
+*.sqlite
+*.bak
+*.nupkg
+*.map
+node_modules/
