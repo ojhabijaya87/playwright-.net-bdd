@@ -1,22 +1,45 @@
-name: Playwright Tests
+name: Playwright Setup
+
 on:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
   pull_request:
-    branches: [ main, master ]
+    branches:
+      - main
+
 jobs:
-  test:
-    timeout-minutes: 60
+  playwright-install:
     runs-on: ubuntu-latest
+    
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 8.0.x
-    - name: Build & Install
-      run: dotnet build
-    - name: Ensure browsers are installed
-      run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
-    - name: Run your tests
-      run: dotnet test
+        dotnet-version: '8.x'  # Adjust if needed
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Install Playwright and browsers for TestLibrary
+      run: |
+        cd TestLibrary
+        dotnet tool install Microsoft.Playwright.CLI -g
+        dotnet playwright install
+        pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+
+    - name: Install Playwright for WebLibrary
+      run: |
+        cd ../WebLibrary
+        dotnet tool install Microsoft.Playwright.CLI -g
+
+    - name: Build solution
+      run: dotnet build --no-restore
+
+    - name: Run tests
+      run: |
+        cd TestLibrary
+        dotnet test --no-build --logger "trx;LogFileName=TestResults.trx"

@@ -130,12 +130,12 @@ This solution contains two main projects:
 
 ## Parallel Execution
 
-Enable Parallelism: The [assembly: Parallelizable()] attribute in AssemblyInfo.cs allows features to run concurrently, improving test execution time.
-Execution Control: The [assembly: LevelOfParallelism()] attribute in AssemblyInfo.cs allows to set the level of parallelism to control the number of concurrent threads
+- Enable Parallelism: The [assembly: Parallelizable()] attribute in AssemblyInfo.cs allows features to run concurrently, improving test execution time.
+- Execution Control: The [assembly: LevelOfParallelism()] attribute in AssemblyInfo.cs allows to set the level of parallelism to control the number of concurrent threads
 
 ## Reporting
 
-This framework uses **Extent Reports** to generate detailed HTML reports after each test run. Reports can be found in the `TestResults/Report` directory.
+- This framework uses **Extent Reports** to generate detailed HTML reports after each test run. Reports can be found in the `TestResults/Report` directory.
 
 ## Contributing
 
