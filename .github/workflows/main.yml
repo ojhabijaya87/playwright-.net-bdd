@@ -23,8 +23,7 @@ jobs:
 
     - name: Move
       run: |
-          dotnet restore
-          ls -l | grep '^d'
+          ls -d */
           dotnet build
           dotnet restore
       
