@@ -35,6 +35,11 @@ jobs:
           dotnet build
           dotnet restore
 
+    - name: Run your tests
+      working-directory: ./TestLibrary
+      run: dotnet test
+
+
    
       
     
