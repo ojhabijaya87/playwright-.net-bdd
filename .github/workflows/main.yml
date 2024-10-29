@@ -30,8 +30,8 @@ jobs:
     - name: Install Playwright in TestLibrary
       working-directory: ./TestLibrary
       run: |
-          dotnet tool install Microsoft.Playwright.CLI
-          dotnet playwright install --with-deps
+          dotnet build
+          pwsh bin/Debug/net8.0/playwright.ps1 install
           dotnet build
           dotnet restore
 
