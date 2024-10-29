@@ -14,17 +14,19 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+      with:
+        path: ./  # Check out directly to the root of the runner workspace
 
     - name: Set up .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.x'  # Adjust if needed
 
     - name: Install dependencies
       run: dotnet restore
 
-    # Change to the TestLibrary directory to set up Playwright tool manifest there
+    # Install Playwright CLI and Browsers in TestLibrary
     - name: Install Playwright CLI and Browsers in TestLibrary
       working-directory: ./TestLibrary
       run: |
@@ -32,7 +34,7 @@ jobs:
         dotnet tool install Microsoft.Playwright.CLI
         dotnet playwright install --with-deps  # Install Playwright and browsers
 
-    # Install Playwright in WebLibrary (without installing browsers)
+    # Install Playwright CLI in WebLibrary (without browsers)
     - name: Install Playwright CLI in WebLibrary
       working-directory: ./WebLibrary
       run: |
