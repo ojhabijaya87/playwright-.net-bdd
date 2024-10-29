@@ -21,19 +21,11 @@ jobs:
       with:
         dotnet-version: '8.x'  # Adjust if needed
 
-    - name: Move
-      run: |
-          ls -d */
-          dotnet build
-          dotnet restore
-
-    - name: Install Playwright in TestLibrary
+    - name: Build, Install and Ensure browsers are installed in TestLibrary
       working-directory: ./TestLibrary
       run: |
           dotnet build
           pwsh bin/Debug/net8.0/playwright.ps1 install
-          dotnet build
-          dotnet restore
 
     - name: Run your tests
       working-directory: ./TestLibrary

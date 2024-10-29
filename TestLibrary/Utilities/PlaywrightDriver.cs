@@ -66,8 +66,8 @@ namespace PlaywrightPOC.Utilities
                 // Create a new page within the context and set timeouts
                 Page = await Context.NewPageAsync();
                 
-                Page.SetDefaultNavigationTimeout(60000);
-                Page.SetDefaultTimeout(60000);
+                Page.SetDefaultNavigationTimeout(30000);
+                Page.SetDefaultTimeout(30000);
 
                 return Page;
             }
