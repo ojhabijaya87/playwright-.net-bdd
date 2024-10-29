@@ -27,14 +27,15 @@ jobs:
     - name: Install Playwright and browsers for TestLibrary
       run: |
         cd TestLibrary
-        dotnet tool install Microsoft.Playwright.CLI -g
-        dotnet playwright install
-        pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+        dotnet new tool-manifest  # Create local tool manifest if not present
+        dotnet tool install Microsoft.Playwright.CLI
+        dotnet playwright install --with-deps  # Install Playwright and browsers
 
     - name: Install Playwright for WebLibrary
       run: |
         cd ../WebLibrary
-        dotnet tool install Microsoft.Playwright.CLI -g
+        dotnet new tool-manifest  # Create local tool manifest file if not present
+        dotnet tool install Microsoft.Playwright.CLI
 
     - name: Build solution
       run: dotnet build --no-restore
@@ -43,3 +44,6 @@ jobs:
       run: |
         cd TestLibrary
         dotnet test --no-build --logger "trx;LogFileName=TestResults.trx"
+        
+    env:
+      DOTNET_ROOT: /home/runner/.dotnet
