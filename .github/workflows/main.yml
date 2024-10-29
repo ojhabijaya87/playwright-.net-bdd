@@ -21,32 +21,11 @@ jobs:
       with:
         dotnet-version: '8.x'  # Adjust if needed
 
-    - name: Install dependencies
+    - name: Move
       run: |
-        cd playwright-specflow  # Move to the root of the repository
-        dotnet restore
-
-    # Install Playwright CLI and Browsers in TestLibrary
-    - name: Install Playwright CLI and Browsers in TestLibrary
-      run: |
-        cd playwright-specflow/TestLibrary
-        dotnet new tool-manifest  # Create local tool manifest if not present
-        dotnet tool install Microsoft.Playwright.CLI
-        dotnet playwright install --with-deps  # Install Playwright and browsers
-
-    # Install Playwright CLI in WebLibrary (without browsers)
-    - name: Install Playwright CLI in WebLibrary
-      run: |
-        cd playwright-specflow/WebLibrary
-        dotnet new tool-manifest  # Create local tool manifest if not present
-        dotnet tool install Microsoft.Playwright.CLI
-
-    - name: Build solution
-      run: |
-        cd playwright-specflow  # Move to the root of the repository
-        dotnet build --no-restore
-
-    - name: Run tests
-      run: |
-        cd playwright-specflow/TestLibrary
-        dotnet test --no-build --logger "trx;LogFileName=TestResults.trx"
+          dotnet restore
+          cd ..
+          dotnet build
+          dotnet restore
+      
+    
