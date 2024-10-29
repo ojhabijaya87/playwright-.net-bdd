@@ -233,17 +233,17 @@ This solution contains two main projects:
    dotnet new tool-manifest
    ```
 
-3. **Install Playwright CLI**:
+4. **Install Playwright CLI**:
    ```bash
    dotnet tool install Microsoft.Playwright.CLI
    ```
 
-3. **Build the Solution**:
+5. **Build the Solution**:
    ```bash
    dotnet build
    ```
 
-3. **Install Playwright Browsers**:
+6. **Install Playwright Browsers**:
    ```bash
    pwsh bin/Debug/net8.0/playwright.ps1 install
    ```
