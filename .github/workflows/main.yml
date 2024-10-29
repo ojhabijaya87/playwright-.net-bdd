@@ -24,12 +24,28 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
+    # Install Playwright in TestLibrary and install browsers
+    - name: Add Microsoft.Playwright package to TestLibrary
+      working-directory: ./TestLibrary
+      run: dotnet add package Microsoft.Playwright
+
     - name: Install Playwright CLI and Browsers in TestLibrary
       working-directory: ./TestLibrary
       run: |
         dotnet new tool-manifest  # Create local tool manifest if not present
         dotnet tool install Microsoft.Playwright.CLI
         dotnet playwright install --with-deps  # Install Playwright and browsers
+
+    # Install Playwright in WebLibrary (without installing browsers)
+    - name: Add Microsoft.Playwright package to WebLibrary
+      working-directory: ./WebLibrary
+      run: dotnet add package Microsoft.Playwright
+
+    - name: Install Playwright CLI in WebLibrary
+      working-directory: ./WebLibrary
+      run: |
+        dotnet new tool-manifest  # Create local tool manifest if not present
+        dotnet tool install Microsoft.Playwright.CLI
 
     - name: Build solution
       run: dotnet build --no-restore
