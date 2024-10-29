@@ -24,7 +24,7 @@ jobs:
     - name: Move
       run: |
           dotnet restore
-          cd playwright-specflow/TestLibrary
+          ls -la
           dotnet build
           dotnet restore
       
