@@ -26,5 +26,15 @@ jobs:
           ls -d */
           dotnet build
           dotnet restore
+
+    - name: Install Playwright in TestLibrary
+      working-directory: ./TestLibrary
+      run: |
+          dotnet tool install Microsoft.Playwright.CLI
+          dotnet playwright install --with-deps
+          dotnet build
+          dotnet restore
+
+   
       
     
