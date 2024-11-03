@@ -1,4 +1,4 @@
-﻿Feature: Journey Planner1
+﻿Feature: Journey Planner
  As a user, I want to use the TfL Journey Planner to plan journeys between various locations
 
 Background:
