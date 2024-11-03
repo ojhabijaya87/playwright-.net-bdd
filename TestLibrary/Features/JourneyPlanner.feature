@@ -57,8 +57,7 @@ Scenario: No results are provided for an invalid journey
 	When I enter "<from>" in the from field
 	And I verify there are no results in the autocomplete suggestions
 	And I enter "<to>" in the to field
-	And I verify there are no results in the autocomplete suggestions
-
+	Then I verify there are no results in the autocomplete suggestions
 Examples:
 	| from   | to     |
 	| Random | Random |
